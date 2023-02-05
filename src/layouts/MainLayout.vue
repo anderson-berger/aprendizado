@@ -1,5 +1,5 @@
 <template>
-  <q-layout view="lHh Lpr lFf">
+  <q-layout view="hHh lpr lFr">
     <q-header elevated>
       <q-toolbar>
         <q-btn
@@ -17,7 +17,13 @@
       </q-toolbar>
     </q-header>
 
-    <q-drawer v-model="leftDrawerOpen" show-if-above bordered mini>
+    <q-drawer
+      v-model="drawerVisivel"
+      bordered
+      :mini="drawerMini"
+      @mouseout="drawerMini = true"
+      @mouseover="drawerMini = false"
+    >
       <q-list>
         <q-item-label header> Essential Links </q-item-label>
 
@@ -120,6 +126,17 @@ export default defineComponent({
   components: {
     EssentialLink,
   },
+  data() {
+    return {
+      drawerVisivel: true,
+      drawerMini: true,
+    };
+  },
+  methods: {
+    toggleLeftDrawer() {
+      this.drawerMini = !this.drawerMini;
+    },
+  },
 
   setup() {
     const leftDrawerOpen = ref(false);
@@ -127,9 +144,6 @@ export default defineComponent({
     return {
       essentialLinks: linksList,
       leftDrawerOpen,
-      toggleLeftDrawer() {
-        leftDrawerOpen.value = !leftDrawerOpen.value;
-      },
     };
   },
 });
