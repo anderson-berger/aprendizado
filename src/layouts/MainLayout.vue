@@ -1,21 +1,6 @@
 <template>
   <q-layout view="hHh lpr lFr">
-    <q-header elevated>
-      <q-toolbar>
-        <q-btn
-          flat
-          dense
-          round
-          icon="menu"
-          aria-label="Menu"
-          @click="toggleLeftDrawer"
-        />
-
-        <q-toolbar-title> Quasar App </q-toolbar-title>
-
-        <div>Quasar v{{ $q.version }}</div>
-      </q-toolbar>
-    </q-header>
+    <q-header> <HeaderMenu></HeaderMenu> </q-header>
 
     <q-drawer
       v-model="drawerVisivel"
@@ -24,15 +9,16 @@
       @mouseout="drawerMini = true"
       @mouseover="drawerMini = false"
     >
-      <q-list>
-        <q-item-label header> Essential Links </q-item-label>
-
-        <EssentialLink
-          v-for="link in essentialLinks"
-          :key="link.title"
-          v-bind="link"
-        />
-      </q-list>
+      <q-scroll-area class="fit">
+        <DrawerMenu></DrawerMenu>
+        <!-- <q-list>
+          <EssentialLink
+            v-for="link in essentialLinks"
+            :key="link.title"
+            v-bind="link"
+          />
+        </q-list> -->
+      </q-scroll-area>
     </q-drawer>
 
     <q-page-container>
@@ -43,7 +29,11 @@
 
 <script lang="ts">
 import { defineComponent, ref } from 'vue';
-import EssentialLink from 'components/EssentialLink.vue';
+// import EssentialLink from 'components/EssentialLink.vue';
+
+//import components
+import HeaderMenu from 'src/views/layouts/HeaderMenu.vue';
+import DrawerMenu from 'src/views/layouts/DrawerMenu.vue';
 
 const linksList = [
   {
@@ -118,13 +108,45 @@ const linksList = [
     icon: 'desktop_windows',
     link: 'https://awesome.quasar.dev',
   },
+  {
+    title: 'Produtos',
+    caption: 'Community Quasar projects',
+    icon: 'diamond',
+    link: 'https://awesome.quasar.dev',
+  },
+  {
+    title: 'Quasar Awesome',
+    caption: 'Community Quasar projects',
+    icon: 'precision_manufacturing',
+    link: 'https://awesome.quasar.dev',
+  },
+  {
+    title: 'Quasar Awesome',
+    caption: 'Community Quasar projects',
+    icon: 'interests',
+    link: 'https://awesome.quasar.dev',
+  },
+  {
+    title: 'Quasar Awesome',
+    caption: 'Community Quasar projects',
+    icon: 'query_stats',
+    link: 'https://awesome.quasar.dev',
+  },
+  {
+    title: 'Quasar Awesome',
+    caption: 'Community Quasar projects',
+    icon: 'desktop_windows',
+    link: 'https://awesome.quasar.dev',
+  },
 ];
 
 export default defineComponent({
   name: 'MainLayout',
 
   components: {
-    EssentialLink,
+    // EssentialLink,
+    HeaderMenu,
+    DrawerMenu,
   },
   data() {
     return {
@@ -148,3 +170,11 @@ export default defineComponent({
   },
 });
 </script>
+<style scoped>
+.rounded-circle {
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+}
+</style>
