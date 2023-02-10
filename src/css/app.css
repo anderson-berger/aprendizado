@@ -1,1 +1,12 @@
 /* app global css */
+:root {
+  --primary-color: #191824;
+  --secundary-color: #f6f6f8;
+}
+
+.q-drawer {
+  background-color: var(--primary-color);
+}
+.q-icon {
+  color: var(--secundary-color);
+}
