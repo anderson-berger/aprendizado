@@ -91,4 +91,7 @@ export default {
 .bordered {
   border: 2px solid var(--secundary-color);
 }
+.q-expansion-item.expanded {
+  border: 1px solid black;
+}
 </style>
